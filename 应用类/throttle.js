@@ -6,22 +6,24 @@ function throttle(fn, threshhold) {
   var timer;
   var start = new Date().getTime();
   return function () {
-    var cur = new Date().getTime();
-    var ctx = this;
+    var current = new Date().getTime();
     var args = arguments;
+    var ctx = this;
     clearTimeout(timer);
-    if (cur - start >= threshhold) {
+    if (current - start >= threshhold) {
       fn.apply(ctx, args);
-      start = cur;
+      start = current;
     } else {
-      // 停止触发后执行一次
-      timer = setTimeout(function () {
-        fn.apply(ctx, args)
+      timer = setTimeout(() => {
+        fn.apply(ctx, args);
       }, threshhold);
     }
   }
 }
 
-var validate = throttle(function(e) {console.log('throttle', e.target.value);}, 2000);
+var validate = throttle(function (e) {
+  console.log('throttle', e.target.value);
+  document.querySelector('div').innerHTML = e.target.value
+}, 2000);
 
 document.querySelector('input').addEventListener('input', validate);

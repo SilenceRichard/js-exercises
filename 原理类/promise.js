@@ -72,4 +72,4 @@ const p = new MyPromise((resovle, reject) => {
   // resovle('success')
 })
 
-p.then(v => console.log(v))
+p.then(v => console.log(v), r => console.log(r))

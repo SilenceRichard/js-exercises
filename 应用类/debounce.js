@@ -7,16 +7,19 @@
 
 function debounce(fn, delay) {
   var timer;
-  return function (e) {
+  return function () {
     clearTimeout(timer);
     var ctx = this;
     var args = arguments;
-    timer = setTimeout(function () {
+    timer = setTimeout(() => {
       fn.apply(ctx, args);
     }, delay)
   }
 }
 
-var validate = debounce(function (e) { console.log('debounce', e.target.value) }, 350)
+var validate = debounce(function (e) {
+  console.log('输入防抖', e.target.value)
+  document.querySelector('div').innerHTML = e.target.value;
+}, 1000)
 
-document.querySelector('input').addEventListener('input', validate)
+document.querySelector('input').addEventListener('input', validate);

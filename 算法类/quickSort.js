@@ -1,5 +1,18 @@
 /**
  * 4 1 5 2 3
+ * 
+ * pivot i lt
+ * 4     1 0
+ *  
+ * 1 < 4 lt++ swap(1, 1)
+ * 4 1 5 2 3
+ * 5 > 4
+ * 2 < 4 lt++ swap(2, 3) 
+ * 4 1 2 5 3
+ * 3 < 4 lt++ swap(3, 4)
+ * 4 1 2 3 5
+ * swap(lt, pivot) 3 1 2 4 5
+ * return lt
  */
 function swap(nums, i, j) {
   const temp = nums[i];
@@ -7,15 +20,15 @@ function swap(nums, i, j) {
   nums[j] = temp;
 }
 function partition(nums, left, right) {
-  const pivot = nums[left];
+  const pivot = left;
   let lt = left;
-  for (let i = left + 1; i <= right; i++) {
-    if (nums[i] < pivot) {
+  for (let i = left; i <= right; i++) {
+    if (nums[i] < nums[pivot]) {
       lt++;
-      swap(nums, i, lt);
+      swap(nums, lt, i);
     }
   }
-  swap(nums, left, lt);
+  swap(nums, lt, pivot);
   return lt;
 }
 function quickSort(nums, left, right) {

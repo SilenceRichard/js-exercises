@@ -23,6 +23,7 @@ Function.prototype.myBind = function (ctx) {
   var args = [].slice.call(arguments, 1);
   var fn = function () {
     var newArgs = Array.prototype.slice.call(arguments);
+    // this 是否为构造函数的实例， 如果是，则为new所创建
     var that = this instanceof fn ? this : ctx;
     self.apply(that, args.concat(newArgs));
   }

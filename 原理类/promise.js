@@ -80,10 +80,10 @@ class MyPromise {
 
 const p = new MyPromise((resovle, reject) => {
   console.log('execute callback');
-  // setTimeout(() => {
-  //   resovle('success')
-  //   reject('error')
-  // }, 0)
+  setTimeout(() => {
+    resovle('success')
+    reject('error')
+  }, 0)
   resovle('success')
 })
 
